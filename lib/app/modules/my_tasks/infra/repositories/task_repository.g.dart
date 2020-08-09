@@ -7,7 +7,7 @@ part of 'task_repository.dart';
 // **************************************************************************
 
 final $TaskRepository = BindInject(
-  (i) => TaskRepository(i<ITaskDatasource>()),
+  (i) => TaskRepository(i<dynamic>()),
   singleton: false,
   lazy: true,
 );

@@ -1,16 +1,16 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/entities/task.dart';
 import 'package:task_clean_app/app/modules/my_tasks/external/models/task_entidade.dart';
-import 'package:task_clean_app/app/modules/my_tasks/infra/datasource/task_datasource_interface.dart';
+import 'package:task_clean_app/app/modules/my_tasks/infra/data_source/task_data_source_interface.dart';
 import 'package:task_clean_app/app/modules/shared/database/local_database.dart';
 
-part 'local_datasource.g.dart';
+part 'local_data_source.g.dart';
 
 @Injectable(singleton: false)
-class LocalDatasource extends ITaskDatasource {
+class LocalDataSource extends ITaskDataSource {
   final AppDatabase appDatabase;
 
-  LocalDatasource(this.appDatabase);
+  LocalDataSource(this.appDatabase);
 
   @override
   Future<void> addNewTask(Task task) async {

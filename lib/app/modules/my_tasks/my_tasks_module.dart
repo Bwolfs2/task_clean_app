@@ -3,7 +3,7 @@ import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/add_new_tas
 import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/remove_task.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/retrieve_all_task.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/update_task.dart';
-import 'package:task_clean_app/app/modules/my_tasks/external/local_datasource/local_datasource.dart';
+import 'package:task_clean_app/app/modules/my_tasks/external/local_data_source/local_data_source.dart';
 import 'package:task_clean_app/app/modules/my_tasks/infra/repositories/task_repository.dart';
 
 import 'ui/add_task/add_task_controller.dart';
@@ -21,7 +21,7 @@ class MyTasksModule extends ChildModule {
         //Repositories
         $TaskRepository,
         //DataSource
-        $LocalDatasource,
+        $LocalDataSource,
         //Use Cases
         $AddNewTask,
         $RetrieveAllTask,
