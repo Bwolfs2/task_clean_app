@@ -1,5 +1,4 @@
 import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/entities/task.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/remove_task.dart';

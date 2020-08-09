@@ -9,5 +9,5 @@ abstract class ITaskRepository {
 
   Future<Either<IFailure, Task>> updateTask(Task task);
 
-  Future<Either<IFailure, void>> removeTask(Task task);
+  Future<Either<IFailure, bool>> removeTask(Task task);
 }

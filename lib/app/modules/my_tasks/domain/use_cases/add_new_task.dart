@@ -14,6 +14,8 @@ class AddNewTask implements IAddNewTask {
 
   @override
   Future<Either<IFailure, Task>> call(Task task) async {
+    assert(task.id == null);
+
     if (task.initTime == null) {
       return Left(
         InvalidTask(
@@ -38,7 +40,7 @@ class AddNewTask implements IAddNewTask {
       );
     }
 
-    if (task.initTime?.isBefore(DateTime.now()) ?? true) {
+    if (task.initTime.isBefore(DateTime.now())) {
       return Left(
         InvalidTask(
           message: "Hora inicial deve ser maior que a hora atual.",
