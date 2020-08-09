@@ -18,6 +18,8 @@ class AddNewTask implements IAddNewTask {
 
   @override
   Future<Either<IFailure, Task>> call(Task task) async {
+    assert(task.id == null);
+
     if (task.initTime == null) {
       return Left(
         InvalidTask(

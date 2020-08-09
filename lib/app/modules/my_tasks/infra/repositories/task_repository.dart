@@ -44,10 +44,10 @@ class TaskRepository extends ITaskRepository {
   }
 
   @override
-  Future<Either<IFailure, void>> removeTask(Task task) async {
+  Future<Either<IFailure, bool>> removeTask(Task task) async {
     try {
       await taskDatasource.removeTask(task);
-      return Right(null);
+      return Right(true);
     } catch (e) {
       return Left(DatabaseError(message: e.toString()));
     }

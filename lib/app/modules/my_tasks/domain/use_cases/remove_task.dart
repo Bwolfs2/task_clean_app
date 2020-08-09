@@ -17,7 +17,9 @@ class RemoveTask implements IRemoveTask {
   RemoveTask(this.repository);
 
   @override
-  Future<Either<IFailure, void>> call(Task task) async {
+  Future<Either<IFailure, bool>> call(Task task) async {
+    assert(task.id != null);
+
     return await repository.removeTask(task);
   }
 }

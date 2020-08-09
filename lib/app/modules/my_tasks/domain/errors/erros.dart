@@ -5,9 +5,17 @@ abstract class IFailure implements Exception {
 class InvalidTask extends IFailure {
   final String message;
   InvalidTask({this.message});
+  @override
+  String toString() {
+    return message;
+  }
 }
 
 class DatabaseError extends IFailure {
   final String message;
   DatabaseError({this.message});
+  @override
+  String toString() {
+    return message;
+  }
 }

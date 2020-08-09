@@ -18,10 +18,28 @@ class UpdateTask implements IUpdateTask {
 
   @override
   Future<Either<IFailure, Task>> call(Task task) async {
+    assert(task.id != null);
+
     if (task.id == null || task.id == 0) {
       return Left(
         InvalidTask(
           message: "Id não informado.",
+        ),
+      );
+    }
+
+    if (task.initTime == null) {
+      return Left(
+        InvalidTask(
+          message: "Hora inicial não foi informada.",
+        ),
+      );
+    }
+
+    if (task.endTime == null) {
+      return Left(
+        InvalidTask(
+          message: "Hora final não foi informada.",
         ),
       );
     }
