@@ -9,6 +9,4 @@ class SplashModule extends ChildModule {
   List<Router> get routers => [
         Router(Modular.initialRoute, child: (_, args) => SplashPage()),
       ];
-
-  static Inject get to => Inject<SplashModule>.of();
 }

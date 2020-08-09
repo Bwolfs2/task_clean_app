@@ -15,24 +15,22 @@ class MyTasksModule extends ChildModule {
   @override
   List<Bind> get binds => [
         //Controllers
-        $UpdateTaskController,
-        $ListTasksController,
-        $AddTaskController,
+        Bind((i) => UpdateTaskController(i()), singleton: false),
+        Bind((i) => ListTasksController(i(), i()), singleton: false),
+        Bind((i) => AddTaskController(i()), singleton: false),
         //Repositories
-        $TaskRepository,
+        Bind((i) => TaskRepository(i())),
         //DataSource
-        $LocalDatasource,
+        Bind((i) => LocalDatasource(i())),
         //Use Cases
-        $AddNewTask,
-        $RetrieveAllTask,
-        $UpdateTask,
-        $RemoveTask
+        Bind((i) => AddNewTask(i())),
+        Bind((i) => RetrieveAllTask(i())),
+        Bind((i) => UpdateTask(i())),
+        Bind((i) => RemoveTask(i()))
       ];
 
   @override
   List<Router> get routers => [
         Router(Modular.initialRoute, child: (_, args) => ListTasksPage()),
       ];
-
-  static Inject get to => Inject<MyTasksModule>.of();
 }

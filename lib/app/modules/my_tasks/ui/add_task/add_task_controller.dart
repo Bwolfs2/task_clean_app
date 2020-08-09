@@ -6,7 +6,6 @@ import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/add_new_tas
 
 part 'add_task_controller.g.dart';
 
-@Injectable(singleton: false)
 class AddTaskController = _AddTaskControllerBase with _$AddTaskController;
 
 abstract class _AddTaskControllerBase with Store {

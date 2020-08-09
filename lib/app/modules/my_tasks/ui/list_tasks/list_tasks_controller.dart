@@ -7,7 +7,6 @@ import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/retrieve_al
 
 part 'list_tasks_controller.g.dart';
 
-@Injectable(singleton: false)
 class ListTasksController = _ListTasksControllerBase with _$ListTasksController;
 
 abstract class _ListTasksControllerBase with Store {

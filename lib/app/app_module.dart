@@ -22,6 +22,4 @@ class AppModule extends MainModule {
 
   @override
   Widget get bootstrap => AppWidget();
-
-  static Inject get to => Inject<AppModule>.of();
 }

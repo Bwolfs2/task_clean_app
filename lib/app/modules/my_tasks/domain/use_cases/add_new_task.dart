@@ -1,16 +1,12 @@
 import 'package:dartz/dartz.dart' hide Task;
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/entities/task.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/errors/erros.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/repositories/task_repository_interface.dart';
-
-part 'add_new_task.g.dart';
 
 abstract class IAddNewTask {
   Future<Either<IFailure, Task>> call(Task task);
 }
 
-@Injectable(singleton: false)
 class AddNewTask implements IAddNewTask {
   final ITaskRepository repository;
 

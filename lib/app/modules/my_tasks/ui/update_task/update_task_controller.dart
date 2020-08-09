@@ -6,7 +6,6 @@ import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/update_task
 
 part 'update_task_controller.g.dart';
 
-@Injectable(singleton: false)
 class UpdateTaskController = _UpdateTaskControllerBase
     with _$UpdateTaskController;
 

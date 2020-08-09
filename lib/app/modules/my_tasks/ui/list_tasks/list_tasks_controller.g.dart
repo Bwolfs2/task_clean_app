@@ -3,16 +3,6 @@
 part of 'list_tasks_controller.dart';
 
 // **************************************************************************
-// InjectionGenerator
-// **************************************************************************
-
-final $ListTasksController = BindInject(
-  (i) => ListTasksController(i<IRetrieveAllTask>(), i<IRemoveTask>()),
-  singleton: false,
-  lazy: true,
-);
-
-// **************************************************************************
 // StoreGenerator
 // **************************************************************************
 
