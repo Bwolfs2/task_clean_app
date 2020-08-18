@@ -24,7 +24,7 @@ class UpdateTask implements IUpdateTask {
       );
     }
 
-    if (task.initTime == null) {
+    if (task.startTime == null) {
       return Left(
         InvalidTask(
           message: "Hora inicial não foi informada.",
@@ -40,7 +40,7 @@ class UpdateTask implements IUpdateTask {
       );
     }
 
-    if (task.initTime.isAfter(task.endTime)) {
+    if (task.startTime.isAfter(task.endTime)) {
       return Left(
         InvalidTask(
           message: "Hora inicial deve ser maior que a hora final.",
@@ -48,7 +48,7 @@ class UpdateTask implements IUpdateTask {
       );
     }
 
-    if (task.initTime.isBefore(DateTime.now())) {
+    if (task.startTime.isBefore(DateTime.now())) {
       return Left(
         InvalidTask(
           message: "Hora inicial deve ser maior que a hora atual.",

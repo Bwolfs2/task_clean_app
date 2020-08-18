@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  specifications: ^0.0.2
   intl: ^0.16.1
   bot_toast: ^3.0.1 
   floor: ^0.14.0

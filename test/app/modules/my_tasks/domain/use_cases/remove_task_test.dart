@@ -18,7 +18,7 @@ void main() {
     completeTask = Task(
         id: 1,
         endTime: DateTime.now().add(Duration(hours: 2)),
-        initTime: DateTime.now().add(Duration(hours: 1)),
+        startTime: DateTime.now().add(Duration(hours: 1)),
         description: "My Description");
   });
 

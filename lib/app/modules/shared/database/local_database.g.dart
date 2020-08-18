@@ -102,7 +102,7 @@ class _$TasksDao extends TasksDao {
             'TaskEntidade',
             (TaskEntidade item) => <String, dynamic>{
                   'id': item.id,
-                  'initTime': item.initTime,
+                  'initTime': item.startTime,
                   'endTime': item.endTime,
                   'description': item.description
                 }),
@@ -112,7 +112,7 @@ class _$TasksDao extends TasksDao {
             ['id'],
             (TaskEntidade item) => <String, dynamic>{
                   'id': item.id,
-                  'initTime': item.initTime,
+                  'initTime': item.startTime,
                   'endTime': item.endTime,
                   'description': item.description
                 }),
@@ -122,7 +122,7 @@ class _$TasksDao extends TasksDao {
             ['id'],
             (TaskEntidade item) => <String, dynamic>{
                   'id': item.id,
-                  'initTime': item.initTime,
+                  'initTime': item.startTime,
                   'endTime': item.endTime,
                   'description': item.description
                 });

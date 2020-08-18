@@ -19,7 +19,7 @@ void main() {
     completeTask = Task(
         id: 1,
         endTime: DateTime.now().add(Duration(hours: 2)),
-        initTime: DateTime.now().add(Duration(hours: 1)),
+        startTime: DateTime.now().add(Duration(hours: 1)),
         description: "My Description");
   });
 
@@ -54,7 +54,7 @@ void main() {
           .thenAnswer((_) async => right(completeTask));
 
       var currentTask = completeTask.copyWith();
-      currentTask.initTime = null;
+      currentTask.startTime = null;
 
       var result = await updateTask(currentTask);
       var errorResult = result.fold(id, id);
@@ -97,7 +97,7 @@ void main() {
           .thenAnswer((_) async => right(completeTask));
 
       var currentTask = completeTask.copyWith();
-      currentTask.initTime = DateTime.now().subtract(Duration(hours: 4));
+      currentTask.startTime = DateTime.now().subtract(Duration(hours: 4));
 
       var result = await updateTask(currentTask);
       var errorResult = result.fold(id, id);

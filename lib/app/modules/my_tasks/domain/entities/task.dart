@@ -1,10 +1,10 @@
 class Task {
   int id;
-  DateTime initTime;
+  DateTime startTime;
   DateTime endTime;
   String description;
 
-  Task({this.id, this.initTime, this.endTime, this.description});
+  Task({this.id, this.startTime, this.endTime, this.description});
 
   bool get isFinished => endTime.isBefore(DateTime.now());
 
@@ -18,7 +18,7 @@ class Task {
   @override
   int get hashCode {
     return id.hashCode ^
-        initTime.hashCode ^
+        startTime.hashCode ^
         endTime.hashCode ^
         description.hashCode;
   }
@@ -31,7 +31,7 @@ class Task {
   }) {
     return Task(
       id: id ?? this.id,
-      initTime: initTime ?? this.initTime,
+      startTime: initTime ?? this.startTime,
       endTime: endTime ?? this.endTime,
       description: description ?? this.description,
     );

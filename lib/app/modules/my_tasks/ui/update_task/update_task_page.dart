@@ -38,7 +38,7 @@ class _UpdateTaskPageState
           ),
           CustomLineDataPickerWidget(
             context,
-            initialValue: widget.task.initTime,
+            initialValue: widget.task.startTime,
             label: "Data Inicial",
             onChangeDate: controller.setInitDate,
           ),
