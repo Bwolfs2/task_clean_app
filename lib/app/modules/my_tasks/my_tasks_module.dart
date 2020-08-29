@@ -25,7 +25,7 @@ class MyTasksModule extends ChildModule {
         //Use Cases
         Bind((i) => AddOrUpdateTask(i())),
         Bind((i) => RetrieveAllTask(i())),
-        Bind((i) => RemoveTask(i()))
+        Bind((i) => RemoveTask(i())),
       ];
 
   @override

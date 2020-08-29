@@ -11,7 +11,7 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  List<Future> precaches = [
+  List<Future> preCaches = [
     Future.delayed(Duration(seconds: 3)),
     Modular.get<DatabaseShared>()()
   ];
@@ -20,7 +20,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
 
-    Future.wait(precaches)
+    Future.wait(preCaches)
         .then((value) => Modular.to.pushReplacementNamed("/myTasks"));
   }
 
