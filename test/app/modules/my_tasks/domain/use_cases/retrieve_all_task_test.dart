@@ -18,8 +18,7 @@ void main() {
 
   group('Retrieve all tasks Test happy path', () {
     test("Retrieve all tasks Right Way", () async {
-      when(repository.retrieveAllTask())
-          .thenAnswer((_) async => right(<Task>[]));
+      when(repository.retrieveAll()).thenAnswer((_) async => right(<Task>[]));
       var result = await retrieveAllTask();
       expect(result | null, <Task>[]);
     });

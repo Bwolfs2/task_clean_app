@@ -1,8 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/add_new_task.dart';
+import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/add_or_update_task.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/remove_task.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/retrieve_all_task.dart';
-import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/update_task.dart';
+
 import 'package:task_clean_app/app/modules/my_tasks/external/local_data_source/local_data_source.dart';
 import 'package:task_clean_app/app/modules/my_tasks/infra/repositories/task_repository.dart';
 
@@ -23,14 +23,14 @@ class MyTasksModule extends ChildModule {
         //DataSource
         Bind((i) => LocalDataSource(i())),
         //Use Cases
-        Bind((i) => AddNewTask(i())),
+        Bind((i) => AddOrUpdateTask(i())),
         Bind((i) => RetrieveAllTask(i())),
-        Bind((i) => UpdateTask(i())),
         Bind((i) => RemoveTask(i()))
       ];
 
   @override
-  List<Router> get routers => [
-        Router(Modular.initialRoute, child: (_, args) => ListTasksPage()),
+  List<ModularRouter> get routers => [
+        ModularRouter(Modular.initialRoute,
+            child: (_, args) => ListTasksPage()),
       ];
 }

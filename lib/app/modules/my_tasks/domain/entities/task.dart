@@ -1,4 +1,6 @@
-class Task {
+import 'package:task_clean_app/app/domain_core/entity_interface.dart';
+
+class Task extends IEntity {
   int id;
   DateTime startTime;
   DateTime endTime;

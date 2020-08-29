@@ -24,7 +24,7 @@ void main() {
 
   group('RemoveTask Test happy path', () {
     test("Remove a Task Right Way", () async {
-      when(repository.removeTask(any)).thenAnswer((_) async => right(true));
+      when(repository.remove(any)).thenAnswer((_) async => right(true));
       var result = await removeTask(completeTask);
       expect(result | null, true);
     });
@@ -32,7 +32,7 @@ void main() {
 
   group('RemoveTask Test not so happy path', () {
     test("Test id with Assert", () async {
-      when(repository.addNewTask(any))
+      when(repository.addOrUpdate(any))
           .thenAnswer((_) async => right(completeTask));
       bool assertionError = false;
       try {

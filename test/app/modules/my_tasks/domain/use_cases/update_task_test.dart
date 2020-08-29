@@ -4,18 +4,18 @@ import 'package:mockito/mockito.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/entities/task.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/errors/erros.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/repositories/task_repository_interface.dart';
-import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/update_task.dart';
+import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/add_or_update_task.dart';
 
 class TaskRepositoryMock extends Mock implements ITaskRepository {}
 
 void main() {
   TaskRepositoryMock repository;
-  UpdateTask updateTask;
+  AddOrUpdateTask updateTask;
   Task completeTask;
 
   setUp(() {
     repository = TaskRepositoryMock();
-    updateTask = UpdateTask(repository);
+    updateTask = AddOrUpdateTask(repository);
     completeTask = Task(
         id: 1,
         endTime: DateTime.now().add(Duration(hours: 2)),
@@ -25,7 +25,7 @@ void main() {
 
   group('UpdateTask Test happy path', () {
     test("Update a Task Right Way", () async {
-      when(repository.updateTask(any))
+      when(repository.addOrUpdate(any))
           .thenAnswer((_) async => right(completeTask));
       var result = await updateTask(completeTask);
       expect(result | null, completeTask);
@@ -33,24 +33,8 @@ void main() {
   });
 
   group('UpdateTask Test not so happy path', () {
-    group('RemoveTask Test not so happy path', () {
-      test("Test id with Assert", () async {
-        when(repository.addNewTask(any))
-            .thenAnswer((_) async => right(completeTask));
-        bool assertionError = false;
-        try {
-          var currentTask = completeTask.copyWith();
-          currentTask.id = null;
-          await updateTask(currentTask);
-        } on AssertionError {
-          assertionError = true;
-        }
-        expect(assertionError, true);
-      });
-    });
-
     test("Test init time empty", () async {
-      when(repository.updateTask(any))
+      when(repository.addOrUpdate(any))
           .thenAnswer((_) async => right(completeTask));
 
       var currentTask = completeTask.copyWith();
@@ -64,7 +48,7 @@ void main() {
     });
 
     test("Test end time empty", () async {
-      when(repository.updateTask(any))
+      when(repository.addOrUpdate(any))
           .thenAnswer((_) async => right(completeTask));
 
       var currentTask = completeTask.copyWith();
@@ -78,7 +62,7 @@ void main() {
     });
 
     test("Test end time before end time", () async {
-      when(repository.updateTask(any))
+      when(repository.addOrUpdate(any))
           .thenAnswer((_) async => right(completeTask));
 
       var currentTask = completeTask.copyWith();
@@ -93,7 +77,7 @@ void main() {
     });
 
     test("Test init time before date time now", () async {
-      when(repository.updateTask(any))
+      when(repository.addOrUpdate(any))
           .thenAnswer((_) async => right(completeTask));
 
       var currentTask = completeTask.copyWith();
@@ -108,7 +92,7 @@ void main() {
     });
 
     test("Test description empty", () async {
-      when(repository.updateTask(any))
+      when(repository.addOrUpdate(any))
           .thenAnswer((_) async => right(completeTask));
 
       var result = await updateTask(completeTask.copyWith(description: ""));
@@ -118,7 +102,7 @@ void main() {
     });
 
     test("Test description null", () async {
-      when(repository.updateTask(any))
+      when(repository.addOrUpdate(any))
           .thenAnswer((_) async => right(completeTask));
       var currentTask = completeTask.copyWith();
       currentTask.description = null;

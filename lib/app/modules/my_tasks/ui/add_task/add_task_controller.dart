@@ -2,14 +2,14 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/entities/task.dart';
-import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/add_new_task.dart';
+import 'package:task_clean_app/app/modules/my_tasks/domain/use_cases/add_or_update_task.dart';
 
 part 'add_task_controller.g.dart';
 
 class AddTaskController = _AddTaskControllerBase with _$AddTaskController;
 
 abstract class _AddTaskControllerBase with Store {
-  final IAddNewTask _addNewTask;
+  final IAddOrUpdateTask _addNewTask;
 
   _AddTaskControllerBase(this._addNewTask);
 

@@ -15,9 +15,9 @@ class AppModule extends MainModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router(Modular.initialRoute, module: SplashModule()),
-        Router("/myTasks", module: MyTasksModule()),
+  List<ModularRouter> get routers => [
+        ModularRouter(Modular.initialRoute, module: SplashModule()),
+        ModularRouter("/myTasks", module: MyTasksModule()),
       ];
 
   @override

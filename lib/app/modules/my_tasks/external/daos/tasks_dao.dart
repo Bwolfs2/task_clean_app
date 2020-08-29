@@ -1,17 +1,17 @@
 import 'package:floor/floor.dart';
-import 'package:task_clean_app/app/modules/my_tasks/external/models/task_entidade.dart';
+import 'package:task_clean_app/app/modules/my_tasks/external/models/task_database_entity.dart';
 
 @dao
 abstract class TasksDao {
-  @Query('SELECT * FROM TaskEntidade')
-  Future<List<TaskEntidade>> retrieveAllTask();
+  @Query('SELECT * FROM TaskDataBaseEntity')
+  Future<List<TaskDatabaseEntity>> retrieveAllTask();
 
   @update
-  Future<void> updateTask(TaskEntidade task);
+  Future<void> updateTask(TaskDatabaseEntity task);
 
   @insert
-  Future<void> addNewTask(TaskEntidade task);
+  Future<void> addNewTask(TaskDatabaseEntity task);
 
   @delete
-  Future<void> deleteTask(TaskEntidade task);
+  Future<void> deleteTask(TaskDatabaseEntity task);
 }

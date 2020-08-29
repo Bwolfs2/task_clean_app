@@ -14,6 +14,6 @@ class RetrieveAllTask implements IRetrieveAllTask {
 
   @override
   Future<Either<IFailure, List<Task>>> call() async {
-    return await repository.retrieveAllTask();
+    return await repository.retrieveAll();
   }
 }

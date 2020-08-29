@@ -2,29 +2,24 @@ import 'package:dartz/dartz.dart' hide Task;
 import 'package:task_clean_app/app/modules/my_tasks/domain/entities/task.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/errors/erros.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/repositories/task_repository_interface.dart';
+import 'package:task_clean_app/app/modules/my_tasks/domain/specs/has_description.dart';
+import 'package:task_clean_app/app/modules/my_tasks/domain/specs/has_end_time.dart';
+import 'package:task_clean_app/app/modules/my_tasks/domain/specs/has_start_time.dart';
+import 'package:task_clean_app/app/modules/my_tasks/domain/specs/start_time_is_after_end_time.dart';
+import 'package:task_clean_app/app/modules/my_tasks/domain/specs/start_time_is_before_now.dart';
 
-abstract class IUpdateTask {
+abstract class IAddOrUpdateTask {
   Future<Either<IFailure, Task>> call(Task task);
 }
 
-class UpdateTask implements IUpdateTask {
+class AddOrUpdateTask implements IAddOrUpdateTask {
   final ITaskRepository repository;
 
-  UpdateTask(this.repository);
+  AddOrUpdateTask(this.repository);
 
   @override
   Future<Either<IFailure, Task>> call(Task task) async {
-    assert(task.id != null);
-
-    if (task.id == null || task.id == 0) {
-      return Left(
-        InvalidTask(
-          message: "Id não informado.",
-        ),
-      );
-    }
-
-    if (task.startTime == null) {
+    if (HasStartTime().isSatisfiedBy(task)) {
       return Left(
         InvalidTask(
           message: "Hora inicial não foi informada.",
@@ -32,7 +27,7 @@ class UpdateTask implements IUpdateTask {
       );
     }
 
-    if (task.endTime == null) {
+    if (HasEndTime().isSatisfiedBy(task)) {
       return Left(
         InvalidTask(
           message: "Hora final não foi informada.",
@@ -40,7 +35,7 @@ class UpdateTask implements IUpdateTask {
       );
     }
 
-    if (task.startTime.isAfter(task.endTime)) {
+    if (StartTimeIsAfterEndTime().isSatisfiedBy(task)) {
       return Left(
         InvalidTask(
           message: "Hora inicial deve ser maior que a hora final.",
@@ -48,7 +43,7 @@ class UpdateTask implements IUpdateTask {
       );
     }
 
-    if (task.startTime.isBefore(DateTime.now())) {
+    if (StartTimeIsBeforeNow().isSatisfiedBy(task)) {
       return Left(
         InvalidTask(
           message: "Hora inicial deve ser maior que a hora atual.",
@@ -56,7 +51,7 @@ class UpdateTask implements IUpdateTask {
       );
     }
 
-    if (task.description == null || task.description.trim().length == 0) {
+    if (!HasDescription().isSatisfiedBy(task)) {
       return Left(
         InvalidTask(
           message: "Descrição deve ser informado.",
@@ -64,6 +59,6 @@ class UpdateTask implements IUpdateTask {
       );
     }
 
-    return await repository.updateTask(task);
+    return await repository.addOrUpdate(task);
   }
 }

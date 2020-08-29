@@ -100,7 +100,7 @@ class _$TasksDao extends TasksDao {
         _taskEntidadeInsertionAdapter = InsertionAdapter(
             database,
             'TaskEntidade',
-            (TaskEntidade item) => <String, dynamic>{
+            (TaskDatabaseEntity item) => <String, dynamic>{
                   'id': item.id,
                   'initTime': item.startTime,
                   'endTime': item.endTime,
@@ -110,7 +110,7 @@ class _$TasksDao extends TasksDao {
             database,
             'TaskEntidade',
             ['id'],
-            (TaskEntidade item) => <String, dynamic>{
+            (TaskDatabaseEntity item) => <String, dynamic>{
                   'id': item.id,
                   'initTime': item.startTime,
                   'endTime': item.endTime,
@@ -120,7 +120,7 @@ class _$TasksDao extends TasksDao {
             database,
             'TaskEntidade',
             ['id'],
-            (TaskEntidade item) => <String, dynamic>{
+            (TaskDatabaseEntity item) => <String, dynamic>{
                   'id': item.id,
                   'initTime': item.startTime,
                   'endTime': item.endTime,
@@ -133,36 +133,34 @@ class _$TasksDao extends TasksDao {
 
   final QueryAdapter _queryAdapter;
 
-  static final _taskEntidadeMapper = (Map<String, dynamic> row) => TaskEntidade(
-      row['id'] as int,
-      row['initTime'] as int,
-      row['endTime'] as int,
-      row['description'] as String);
+  static final _taskEntidadeMapper = (Map<String, dynamic> row) =>
+      TaskDatabaseEntity(row['id'] as int, row['initTime'] as int,
+          row['endTime'] as int, row['description'] as String);
 
-  final InsertionAdapter<TaskEntidade> _taskEntidadeInsertionAdapter;
+  final InsertionAdapter<TaskDatabaseEntity> _taskEntidadeInsertionAdapter;
 
-  final UpdateAdapter<TaskEntidade> _taskEntidadeUpdateAdapter;
+  final UpdateAdapter<TaskDatabaseEntity> _taskEntidadeUpdateAdapter;
 
-  final DeletionAdapter<TaskEntidade> _taskEntidadeDeletionAdapter;
+  final DeletionAdapter<TaskDatabaseEntity> _taskEntidadeDeletionAdapter;
 
   @override
-  Future<List<TaskEntidade>> retrieveAllTask() async {
+  Future<List<TaskDatabaseEntity>> retrieveAllTask() async {
     return _queryAdapter.queryList('SELECT * FROM TaskEntidade',
         mapper: _taskEntidadeMapper);
   }
 
   @override
-  Future<void> addNewTask(TaskEntidade task) async {
+  Future<void> addNewTask(TaskDatabaseEntity task) async {
     await _taskEntidadeInsertionAdapter.insert(task, OnConflictStrategy.abort);
   }
 
   @override
-  Future<void> updateTask(TaskEntidade task) async {
+  Future<void> updateTask(TaskDatabaseEntity task) async {
     await _taskEntidadeUpdateAdapter.update(task, OnConflictStrategy.abort);
   }
 
   @override
-  Future<void> deleteTask(TaskEntidade task) async {
+  Future<void> deleteTask(TaskDatabaseEntity task) async {
     await _taskEntidadeDeletionAdapter.delete(task);
   }
 }

@@ -1,18 +1,18 @@
 import 'package:floor/floor.dart';
 import 'package:task_clean_app/app/modules/my_tasks/domain/entities/task.dart';
 
-@Entity(tableName: 'TaskEntidade')
-class TaskEntidade {
+@Entity(tableName: 'TaskDatabaseEntity')
+class TaskDatabaseEntity {
   @PrimaryKey(autoGenerate: true)
   final int id;
   final int startTime;
   final int endTime;
   final String description;
 
-  TaskEntidade(this.id, this.startTime, this.endTime, this.description);
+  TaskDatabaseEntity(this.id, this.startTime, this.endTime, this.description);
 
-  factory TaskEntidade.fromDomain(Task task) {
-    return TaskEntidade(
+  factory TaskDatabaseEntity.fromDomain(Task task) {
+    return TaskDatabaseEntity(
       task.id,
       task.startTime.millisecondsSinceEpoch,
       task.endTime.millisecondsSinceEpoch,

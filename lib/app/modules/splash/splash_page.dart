@@ -34,7 +34,7 @@ class _SplashPageState extends State<SplashPage> {
           children: [
             FlutterLogo(
               size: 100,
-              colors: Colors.amber,
+              textColor: Colors.amber,
             ),
             SizedBox(
               height: 20,

@@ -10,7 +10,10 @@ class TaskRepository extends ITaskRepository {
   TaskRepository(this.taskDataSource);
 
   @override
-  Future<Either<IFailure, Task>> addNewTask(Task task) async {
+  Future<Either<IFailure, Task>> addOrUpdate(Task task) =>
+      task.id == null ? _add(task) : _update(task);
+
+  Future<Either<IFailure, Task>> _add(Task task) async {
     try {
       await taskDataSource.addNewTask(task);
       return Right(task);
@@ -19,18 +22,7 @@ class TaskRepository extends ITaskRepository {
     }
   }
 
-  @override
-  Future<Either<IFailure, List<Task>>> retrieveAllTask() async {
-    try {
-      var tasks = await taskDataSource.retrieveAllTask();
-      return Right(tasks);
-    } catch (e) {
-      return Left(DatabaseError(message: e.toString()));
-    }
-  }
-
-  @override
-  Future<Either<IFailure, Task>> updateTask(Task task) async {
+  Future<Either<IFailure, Task>> _update(Task task) async {
     try {
       await taskDataSource.updateTask(task);
       return Right(task);
@@ -40,7 +32,17 @@ class TaskRepository extends ITaskRepository {
   }
 
   @override
-  Future<Either<IFailure, bool>> removeTask(Task task) async {
+  Future<Either<IFailure, List<Task>>> retrieveAll() async {
+    try {
+      var tasks = await taskDataSource.retrieveAllTask();
+      return Right(tasks);
+    } catch (e) {
+      return Left(DatabaseError(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<IFailure, bool>> remove(Task task) async {
     try {
       await taskDataSource.removeTask(task);
       return Right(true);
